@@ -1,0 +1,107 @@
+create database bitscape
+
+use ContosoRetailDW
+use bitscape
+select * from Employee
+
+CREATE TABLE Employee  
+(  
+EmployeeID int,  
+FirstName varchar(255),  
+LastName varchar(255),  
+Email varchar(255),  
+AddressLine varchar(255),  
+City varchar(255)  
+);  
+
+insert into Employee values (1,'Chirag','patel','chiragpatel@gmail.com','kailasbag','Gondal'),
+(2,'samir','Bhuva','samirbhuva@gmail.com','Kkv ','Rajkot'),
+(3,'Milan','Savaliya','milansavaliya@gmial.com','Kalavad Road','Rajkot'),
+(4,'Klapesh','Rakholiya','kalpeshrakholiya@gmial.com','Gundala Road','Gondal'),
+(5,'Jagdish','patel','jagdishpatel@gmial.com','Sapar veraval','kotada sangani');
+
+
+CREATE TABLE Employee1  
+(  
+EmployeeID int,  
+FirstName varchar(255),  
+LastName varchar(255),  
+Email varchar(255),  
+AddressLine varchar(255),  
+City varchar(255)  
+);  
+
+insert into Employee1 values (1,'Chirag','patel','chiragpatel@gmail.com','kailasbag','Gondal'),
+(2,'samir','Bhuva','samirbhuva@gmail.com','Kkv ','Rajkot'),
+(3,'Milan','Savaliya','milansavaliya@gmial.com','Kalavad Road','Rajkot'),
+(4,'Klapesh','Rakholiya','kalpeshrakholiya@gmial.com','Gundala Road','Gondal'),
+(5,'Jagdish','patel','jagdishpatel@gmial.com','Sapar veraval','kotada sangani');
+
+
+select * from Employee 
+select LastName from Employee
+select LastName ,FirstName from Employee
+select distinct city from Employee                    -- duplicate record not allows
+select distinct city , LastName from Employee
+select count(distinct Lastname) as abc from Employee  
+select Top 2  * from Employee                         -- top record display
+update Employee set FirstName='Nayan' where EmployeeID =1 
+update Employee set FirstName='Kalpesh'where EmployeeID =4
+update Employee set FirstName='Savan',LastName='Vaghela'  where EmployeeID =2 
+--delete from Employee FirstName ='
+delete from Employee where EmployeeID= 5
+delete from Employee where EmployeeID= 5
+delete from Employee where FirstName ='Jagdish'
+delete from Employee  -- table record deleted
+drop table Employee   -- table and it's record are deleted    
+truncate table employee -- table record deleted auto increment restart
+
+select * from Employee1
+select * from Employee
+
+--union  
+  /*The UNION operator is used to combine the result-set of two or more SELECT statements. 
+    Every SELECT statement within UNION must have the same number of columns
+    The columns must also have similar data types
+    The columns in every SELECT statement must also be in the same order */
+
+select LastName,City from Employee
+union               
+select LastName, City from Employee1  
+
+
+  /*union all
+  merge records To allow duplicate values. */
+
+select LastName from Employee
+union all                     
+select LastName from Employee1
+
+SELECT FirstName, LastName
+FROM Employee
+UNION 
+SELECT FirstName, LastName
+FROM Employee1
+ORDER BY FirstName, LastName       
+
+SELECT FirstName, LastName
+FROM Employee
+intersect                       -- match two select statement
+SELECT FirstName, LastName
+FROM Employee1
+
+
+--The MINUS operator is not supported with all databases. It is supported by Oracle database but not SQL server or PostgreSQL.
+
+SELECT FirstName, LastName ,City 
+FROM employee
+MINUS                           
+SELECT FirstName, LastName ,City 
+FROM employee1
+
+select * from employee 
+where city not in ('Gondal') -- Not Equal
+select * from employee 
+where city !='Gondal'   -- Not Equal
+select * from employee 
+where city <> 'Gondal' -- Not Equal
