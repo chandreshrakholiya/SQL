@@ -1,7 +1,7 @@
-create database bitscape
+
 
 use ContosoRetailDW
-use bitscape
+https://github.com/chandreshrakholiya/SQL/blob/main/Create%20,Inset,Update
 select * from Employee
 
 CREATE TABLE Employee  
